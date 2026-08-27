@@ -26,7 +26,7 @@ namespace store {
 		int number = 0;
 		cout << message;
 		cin >> number;
-		while (cin.fail() || number<0) {
+		while (cin.fail() || number<=0) {
 			cin.clear();
 			cin.ignore(std::numeric_limits<streamsize>::max(), '\n');
 			cout << message;
@@ -36,10 +36,12 @@ namespace store {
 	}
 
 	float readPrice(string message) {
-		cout << message;
-		float price = 0.0;
-		cin >> price;
-		return price;
+		int number=0;
+		do{
+			cout<<message;
+			cin>>number;
+		}while(number<=0);
+		return number;
 	}
 
 	string readProductName() {
@@ -74,7 +76,7 @@ namespace store {
 		char wantToComplete = 'y';
 		while (wantToComplete == 'y' || wantToComplete == 'Y') {
 			product.name = readProductName();
-			product.price = readPrice("Enter product price : ");
+			product.price = readPrice("Enter product price must be greater than zero : ");
 			product.avilable = readPositiveNumber(" Enter Avilable quantity :");
 			productsList.push_back(product);
 			wantToComplete = IsWantToComplete();
