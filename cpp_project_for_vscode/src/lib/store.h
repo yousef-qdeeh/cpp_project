@@ -26,7 +26,7 @@ namespace store {
 		int number = 0;
 		cout << message;
 		cin >> number;
-		while (cin.fail()) {
+		while (cin.fail() || number<0) {
 			cin.clear();
 			cin.ignore(std::numeric_limits<streamsize>::max(), '\n');
 			cout << message;
@@ -121,12 +121,7 @@ namespace store {
 
 			case 1:
 			system("cls");
-			if(securityStatus){
 				readVictorOfProducts(productsList);
-				break;
-			}
-			cout<<"we cant activate session ): "<<endl;
-			 securityStatus=isPassedFromSecurityAction();
 				break;
 
 
