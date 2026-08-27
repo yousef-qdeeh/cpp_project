@@ -93,7 +93,57 @@ namespace store {
 	void clearStack(vector <stProduct>& productsList) {
 		productsList.clear();
 	}
+	/*
+	اللي انا بدي اعملو حاليا 
+	انو اعمل 
+	دالة 
+	deauflt parmeter 
+	overloading
+	بحيث انو مرة تستقبل اما رينج او قيمة واحدة 
+	قصدي 
+	مثلا ممكن اليوزر يعمل تعديل ل مجموعة هياكل 
+	مثلا 
+	الهيكل الاول و الرابع يتغيرو
+	و ما بدي اغير الباقي 
+	و هاد طبعا بدوش 
+	ارجع اعرف 
+	ستكرتشر من stProduct
+	بل 
+	for 
+     i=0
+	لحد 
+	productsList.size()
+	ثم غير 
+	i 
+	للاندكس 
+	productsList.at(i).name=""; مثلا 
+	
 
+	الخلاصة اعمل دالة 
+	تطلب من المستخدم يختار هل يريد تعديل مفرد ولا متعدد
+	ثم اذا مفرد 
+	قلو دخل رقم العنصر 
+	وهادي القيمة اللي هو دخلها ناقص 1 
+	تمثل ال الاندكس 
+	productsList.get(الاندكس).name="مثلا";
+	productsList.get(الاندكس).price=any;
+	اما لو متعدد 
+	ببساطة بتعمل 
+	لوب 
+	من 
+	from - 1 لو كانت تمثل الموضع اللي دخلو المستخدم
+	و 
+	from > to لو كانت تمثل الاندكسييز
+	تنبيه ل مخاطر اخري 
+	السعر و الكمية لا ينفع يكونو صفر
+	تاكد من readname تتحقق من النصوص عشان 
+	م يضربش
+	*/
+	void changeCustomValue(vector <stProduct>& productsList){
+		for(int i=0;i<productsList.size();i++){
+			
+		}
+	}
 	void mainActivityApp() {
 		bool securityStatus=isPassedFromSecurityAction();
 		///////////////////////////////////////////////////////////////////////
@@ -113,6 +163,7 @@ namespace store {
 			cout << "print element press 2\n";
 			cout << "clear all  element press 3\n";
 			cout << "Exit press 4\n\n";
+			cout<<"For changing values in founded list press 5 \n";
 			int choice = readPositiveNumber("Enter your choice : ");
 			switch (choice) {
 
@@ -146,10 +197,19 @@ namespace store {
 				else {
 					clearStack(productsList);
 				}
-
 				break;
+//////////////////////////////////////////////////////////////////////
 			case 4:
 				return;
+				break;
+
+///////////////////////////////////////////////////////////////////////
+			case 5:
+				system("cls");
+				if (productsList.empty()) {
+					printLogo();
+					cout << "\nsorry but no any list founded ! \n\n";
+				}
 				break;
 			}
 		}
