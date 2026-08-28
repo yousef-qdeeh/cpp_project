@@ -8,7 +8,15 @@ int generateRandomOtp(int from , int to){
     int opt=(rand()%(to-from+1)+from);
     return opt;
 }
-
+/*مستقبلا سيتم وضع دوال تقوم ب 
+تخزين ال 
+otp  
+في ملف نصي خارجي و بطلب منك ادخالو 
+ولو ل مليون سنة طول ما انت مش مدخل صح ح اضل اطلب منك 
+تدخل ال 
+otp 
+الصج
+*/
 int read_Otp_Activation_Key(){
     cout<<" requrired Security Action \n\n";
     int number=0;
