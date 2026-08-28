@@ -71,14 +71,24 @@ namespace store {
 		cout << "\t\t\t\t\t\t   |_|                       \n";
 	}
 
-	void readVictorOfProducts(vector <stProduct>& productsList) {
-		stProduct product;
-		char wantToComplete = 'y';
-		while (wantToComplete == 'y' || wantToComplete == 'Y') {
+	void readProductsStructure(vector <stProduct>& productsList , stProduct &product){
 			product.name = readProductName();
 			product.price = readPrice("Enter product price must be greater than zero : ");
 			product.avilable = readPositiveNumber(" Enter Avilable quantity :");
 			productsList.push_back(product);
+	}
+	
+	void readProductsStructure(stProduct &product){
+			product.name = readProductName();
+			product.price = readPrice("Enter product price must be greater than zero : ");
+			product.avilable = readPositiveNumber(" Enter Avilable quantity :");
+	}
+	
+	void readVictorOfProducts(vector <stProduct>& productsList) {
+		stProduct product;
+		char wantToComplete = 'y';
+		while (wantToComplete == 'y' || wantToComplete == 'Y') {
+			readProductsStructure(productsList , product);
 			wantToComplete = IsWantToComplete();
 		}
 	}
@@ -87,7 +97,7 @@ namespace store {
 		system("cls");
 		printLogo();
 		printHead();
-		for (stProduct& product : productsList) {
+		for (const stProduct& product : productsList) {
 			printTable(product.name, product.price, product.avilable);
 		}
 	}
@@ -95,6 +105,9 @@ namespace store {
 	void clearStack(vector <stProduct>& productsList) {
 		productsList.clear();
 	}
+
+
+
 	/*
 	اللي انا بدي اعملو حاليا 
 	انو اعمل 
@@ -141,11 +154,17 @@ namespace store {
 	تاكد من readname تتحقق من النصوص عشان 
 	م يضربش
 	*/
-	void changeCustomValue(vector <stProduct>& productsList){
-		for(int i=0;i<productsList.size();i++){
-			
+	void changeCustomValue(vector <stProduct>& productsList , int from , int to=0){
+		if(to==0){
+			readProductsStructure(productsList.at(from));
+			return;
+		}
+		for(;from<=to;from++){
+			readProductsStructure(productsList.at(from));
 		}
 	}
+	
+	
 	void mainActivityApp() {
 		bool securityStatus=isPassedFromSecurityAction();
 		///////////////////////////////////////////////////////////////////////
@@ -185,6 +204,7 @@ namespace store {
 				if (productsList.empty()) {
 					printLogo();
 					cout << "\nsorry but no any list founded ! \n\n";
+					break;
 				}else{	
 					printProductsList(productsList);
 				}
@@ -195,6 +215,7 @@ namespace store {
 				if (productsList.empty()) {
 					printLogo();
 					cout << "\nsorry but no any list founded ! \n\n";
+					break;
 				}
 				else {
 					clearStack(productsList);
@@ -211,6 +232,13 @@ namespace store {
 				if (productsList.empty()) {
 					printLogo();
 					cout << "\nsorry but no any list founded ! \n\n";
+					break;
+				}
+				cout<<"\n\nIf you want to change single product press 1 press 2 for multiple \n\n";
+				int number=readPositiveNumber("Enter your choice : ");
+				int location=readPositiveNumber("Enter Product Number : ");
+				if(number==1){
+					changeCustomValue(productsList , location-1);
 				}
 				break;
 			}
